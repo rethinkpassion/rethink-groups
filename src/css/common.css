@@ -1,0 +1,223 @@
+:root {
+    --primary-bg: #030712;
+    --nav-bg: rgba(17, 24, 39, 0.7);
+    --pill-bg: rgba(0, 0, 0, 0.55);
+    --pill-border: rgba(255, 255, 255, 0.08);
+    --glow-color: rgba(147, 51, 234, 0.35);
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --accent-gradients: linear-gradient(135deg, #48206E, #6C1A4B);
+    --accent-border-gradients: linear-gradient(135deg, #563c6e, #6e3558);
+    --accent-gradient: linear-gradient(135deg, #7c3aed, #db2777);
+}
+
+/* ===============================
+   GLOBAL RESET
+=================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    /* background-color: var(--primary-bg); */
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/* ===============================
+   HEADER
+=================================*/
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 2rem;
+    background: transparent;
+}
+
+/* ===============================
+   NAV CONTAINER
+=================================*/
+
+nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* ===============================
+   LOGO
+=================================*/
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex: 1;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+/* ===============================
+   NAV PILL (CENTER)
+=================================*/
+.action-btns-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav-pill-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--pill-bg);
+    background: var(--accent-gradients);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--accent-border-gradients);
+    border-radius: 100px;
+    padding: 3px;
+    box-shadow:
+        0 0 35px var(--glow-color),
+        inset 0 0 15px rgba(255, 255, 255, 0.03);
+}
+
+/* ===============================
+   NAV LINKS
+=================================*/
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2px;
+}
+
+.nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-muted);
+    /* font-family: "GT America Trial"; */
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+    display: block;
+
+}
+
+/* Hover & Active States */
+
+.nav-links a:hover {
+    color: var(--text-main);
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.6), rgba(219, 39, 119, 0.6));
+}
+
+.nav-links a.active::after {
+    display: none;
+}
+
+.nav-contact-btn {
+    display: flex;
+    flex-direction: row-reverse;
+    /* Arrow on left by default */
+    padding: 0.6rem 1.5rem;
+    align-items: center;
+    gap: 7px;
+    border-radius: 31px;
+    background: var(--accent-gradients);
+
+    /* background: linear-gradient(90deg, rgba(173, 70, 255, 0.60) 0%, rgba(246, 51, 154, 0.60) 100%); */
+    text-decoration: none;
+    color: white;
+    font-family: "GT America Trial", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    /* 171.429% */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-arrow-wrapper {
+    /* width: 36px;
+    height: 36px; */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+}
+
+.btn-arrow {
+    width: 23px;
+    height: 23px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+/* Button Hover */
+
+.nav-contact-btn:hover {
+    flex-direction: row;
+    background: #9333ea;
+}
+
+.nav-contact-btn:hover .btn-arrow-wrapper {
+    background: #ec4899;
+}
+
+/* ===============================
+   MOBILE MENU
+=================================*/
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: var(--text-main);
+    border-radius: 2px;
+}
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+
+@media (max-width: 992px) {
+
+    .nav-pill-container {
+        display: none;
+    }
+
+    .nav-contact-btn {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+}
