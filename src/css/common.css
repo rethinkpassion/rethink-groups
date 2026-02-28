@@ -27,7 +27,195 @@ body {
     color: var(--text-main);
     line-height: 1.5;
 }
+/* ===============================
+   PAGE VISIBILITY CONTROL
+=================================*/
+/* Home page reveal animation */
+#app {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+}
 
+body.is-ready #app {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.is-ready #loader { display: none; }
+
+/* ===============================
+   LOADER (Phase 1 + Phase 2)
+=================================*/
+
+#loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+
+  /* FINAL BACKGROUND (visible after reveal) */
+  background:
+    radial-gradient(
+      1800px 500px at 50% 120%,
+      rgba(0,170,255,0.75) 0%,
+      rgba(0,170,255,0.45) 35%,
+      rgba(0,170,255,0.0) 75%
+    ),
+    radial-gradient(
+      900px 600px at 25% 0%,
+      rgba(80, 39, 77, 0.75),
+      transparent 65%
+    ),
+    radial-gradient(
+      900px 600px at 75% 0%,
+      rgba(80, 39, 77, 0.75),
+      transparent 65%
+    ),
+    #000;
+
+  perspective: 1200px;
+}
+
+/* Black overlay -> fades while Phase-1 runs (so color appears gradually) */
+#loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 1;
+  animation: revealGradient 4.8s ease-in-out forwards; /* Phase-1 duration */
+}
+
+@keyframes revealGradient {
+  0%   { opacity: 1; }
+  15%  { opacity: 1; }
+  45%  { opacity: 0.55; }
+  70%  { opacity: 0.25; }
+  100% { opacity: 0; }
+}
+
+/* ===============================
+   PHASE 1: RING (stop/go zoom back)
+=================================*/
+
+.horizontal-circle {
+  width: 185px;
+  height: 185px;
+  position: relative;
+  z-index: 2;
+
+  transform-style: preserve-3d;
+  transform: rotateX(-68deg) scale(1);
+
+  /* Phase-1 */
+  animation: stepZoom 3s ease-in-out forwards, ringFadeOut 0.6s ease forwards;
+  animation-delay: 0s, 3s; /* fade ring after Phase-1 ends */
+}
+
+@keyframes stepZoom {
+  0%   { transform: rotateX(-68deg) scale(1); }
+
+  15%  { transform: rotateX(-68deg) scale(0.75); }
+  22%  { transform: rotateX(-68deg) scale(0.75); }  /* stop */
+
+  40%  { transform: rotateX(-68deg) scale(0.5); }
+  47%  { transform: rotateX(-68deg) scale(0.5); }   /* stop */
+
+  70%  { transform: rotateX(-68deg) scale(0.28); }
+  100% { transform: rotateX(-68deg) scale(0.28); }
+}
+
+@keyframes ringFadeOut {
+  to { opacity: 0; }
+}
+
+/* dots */
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 49.574px;
+  height: 49.574px;
+  background: #fff;
+  border-radius: 50%;
+  animation: orbitDepth 6s linear infinite;
+}
+
+/* 12 delays */
+.dot:nth-child(1)  { animation-delay: 0s; }
+.dot:nth-child(2)  { animation-delay: -0.5s; }
+.dot:nth-child(3)  { animation-delay: -1s; }
+.dot:nth-child(4)  { animation-delay: -1.5s; }
+.dot:nth-child(5)  { animation-delay: -2s; }
+.dot:nth-child(6)  { animation-delay: -2.5s; }
+.dot:nth-child(7)  { animation-delay: -3s; }
+.dot:nth-child(8)  { animation-delay: -3.5s; }
+.dot:nth-child(9)  { animation-delay: -4s; }
+.dot:nth-child(10) { animation-delay: -4.5s; }
+.dot:nth-child(11) { animation-delay: -5s; }
+.dot:nth-child(12) { animation-delay: -5.5s; }
+
+@keyframes orbitDepth {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(130px) rotate(0deg) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) translateX(130px) rotate(-180deg) scale(0.55);
+    opacity: 0.25;
+    filter: blur(3px);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(130px) rotate(-360deg) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+/* ===============================
+   PHASE 2: LOGO COMES FORWARD
+=================================*/
+.loader-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+
+  width: 149px;
+  height: 52px;
+  object-fit: contain;
+
+  opacity: 0;
+
+  /* true 3D */
+  transform: translate(-50%, -50%) translateZ(0px);
+
+  animation: logoForward 2.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 3s;
+}
+
+/* 3D cinematic forward motion */
+@keyframes logoForward {
+
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateZ(0px);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateZ(1200px);
+  }
+}
 /* ===============================
    HEADER
 =================================*/

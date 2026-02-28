@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     loadNavbar();
     loadHomeContent();
     loadAboutContent();
+   const TOTAL_MS = 5500; // 13s approx
+
+   setTimeout(() => {
+     document.body.classList.add("is-ready");
+   }, TOTAL_MS);
 });
 
 async function loadNavbar() {
@@ -122,3 +127,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const aboutSection = document.querySelector("#about");
     observer.observe(aboutSection);
 });
+/* ===============================
+   LOADER CONTROL
+=================================*/
+
+function hideLoader() {
+    const loader = document.getElementById('loader');
+
+    loader.style.transition = "opacity 0.5s ease";
+    loader.style.opacity = "0";
+
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 500);
+}
