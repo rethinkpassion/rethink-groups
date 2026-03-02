@@ -1,0 +1,404 @@
+/* ===============================
+   Sectors SECTION
+=================================*/
+
+@font-face {
+    font-family: "TiemposHeadline";
+    src: url("/public/assets/fonts/Tiempos-Font/TiemposHeadline-Light.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TiemposHeadline";
+    src: url("/public/assets/fonts/Tiempos-Font/TiemposHeadline-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TiemposHeadline";
+    src: url("/public/assets/fonts/Tiempos-Font/TiemposHeadline-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TiemposHeadline";
+    src: url("/public/assets/fonts/Tiempos-Font/TiemposHeadline-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "TiemposHeadline";
+    src: url("/public/assets/fonts/Tiempos-Font/TiemposHeadline-LightItalic.otf") format("opentype");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+.sectors-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: visible;
+
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 50px;
+    overflow-x: hidden;
+}
+
+/* Top bloom + soft shadow blend */
+.sectors-section::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    pointer-events: none;
+    z-index: 3;
+
+    /* layered effect */
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(0, 0, 0, 0.08) 25%,
+            rgba(0, 0, 0, 0) 50%),
+        radial-gradient(ellipse at center,
+            rgba(255, 255, 255, 0.9) 0%,
+            rgba(255, 255, 255, 0.5) 40%,
+            rgba(255, 255, 255, 0.15) 65%,
+            rgba(255, 255, 255, 0) 80%);
+
+    filter: blur(90px);
+}
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.sectors-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.8;
+}
+
+
+.sectors-content {
+    position: relative;
+    z-index: 3;
+    width: 50%;
+    padding: 120px 0 0 120px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    color: #000;
+}
+
+/* ===============================
+   PRIMARY SECTORS LABEL
+=================================*/
+
+.primary-sectors-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.primary-sectors-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.primary-sectors-text {
+    color: #000;
+
+    font-family: "TiemposHeadline", serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    /* 135% */
+
+    font-feature-settings: 'liga'off, 'clig'off;
+}
+
+.primary-sectors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-left: -40px;
+}
+
+.primary-sectors-list p {
+    margin: 0;
+    position: relative;
+    padding-left: 55px;
+    /* space for arrow */
+
+    color: #000;
+    font-family: "TiemposHeadline", serif;
+    font-size: 32px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 28px;
+
+    font-feature-settings: 'liga'off, 'clig'off;
+
+    transition: all 0.45s ease;
+    cursor: pointer;
+}
+
+/* Arrow */
+.primary-sectors-list p::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(-15px);
+
+    width: 43px;
+    height: 28px;
+
+    background: url("/public/assets/icons/sectors-section-arrow.png") no-repeat center;
+    background-size: contain;
+
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+/* Hover Effect */
+.primary-sectors-list p:hover {
+    transform: translateX(18px);
+
+    background: linear-gradient(71.2deg,
+            #0061FF 12.79%,
+            #60EFFF 139.04%);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Show arrow on hover */
+.primary-sectors-list p:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+#sector-hover-preview {
+    position: fixed;
+    /* VERY IMPORTANT */
+    width: 169px;
+    height: 102px;
+    object-fit: cover;
+    border-radius: 8px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    z-index: 9999;
+    /* ensure above video */
+}
+
+.sectors-side-video {
+    position: absolute;
+    right: 0px;
+    bottom: 120px;
+    width: 678px;
+    height: 615px;
+
+    border-radius: 50px;
+    overflow: hidden;
+    background: #000;
+
+    z-index: 3;
+}
+
+.sectors-side-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sectors-button {
+    width: 192px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 5px;
+    border-radius: 31px;
+
+    background-image: linear-gradient(to right,
+            rgba(173, 70, 255, 0.6),
+            rgba(246, 51, 154, 0.6));
+
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+/* Text */
+
+.sectors-btn-text {
+    color: #FFF;
+    font-family: "GT America Trial", sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ===============================
+   Icon Wrapper (for circle bg)
+=================================*/
+
+.icon-wrapper {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.4s ease;
+}
+
+.Arrow {
+    width: 23px;
+    height: 23px;
+    transition: all 0.4s ease;
+}
+
+/* ===============================
+   3 Second Animated Effect
+=================================*/
+
+.sectors-button:hover {
+    animation: buttonEffect 3s forwards;
+}
+
+.sectors-button:hover .sectors-btn-text {
+    animation: textMove 3s forwards;
+}
+
+.sectors-button:hover .icon-wrapper {
+    animation: iconMove 3s forwards;
+}
+
+/* Button Color Animation */
+@keyframes buttonEffect {
+    0% {
+        background-image: linear-gradient(to right,
+                rgba(173, 70, 255, 0.6),
+                rgba(246, 51, 154, 0.6));
+    }
+
+    20% {
+        background-image: linear-gradient(to right,
+                #7B2FFF,
+                #9D2CFF);
+    }
+
+    100% {
+        background-image: linear-gradient(to right,
+                rgba(173, 70, 255, 0.6),
+                rgba(246, 51, 154, 0.6));
+    }
+}
+
+/* TEXT SHIFT */
+@keyframes textMove {
+    0% {
+        transform: translateX(0);
+    }
+
+    30% {
+        transform: translateX(-40px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* ICON SHIFT + PINK CIRCLE */
+@keyframes iconMove {
+
+    0% {
+        transform: translateX(0);
+        background: transparent;
+    }
+
+    30% {
+        transform: translateX(120px);
+        background: #F6339A;
+    }
+
+    100% {
+        transform: translateX(0);
+        background: transparent;
+    }
+}
+
+/* ===============================
+   Sectors Reveal Animation
+=================================*/
+/* Initial hidden state */
+.primary-sectors-wrapper,
+.primary-sectors-list,
+.sectors-button {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translateX(-60px);
+    transition: all 1s ease;
+}
+
+/* Reveal */
+.sectors-section.reveal-active .primary-sectors-wrapper,
+.sectors-section.reveal-active .primary-sectors-list,
+.sectors-section.reveal-active .sectors-button {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+
+.sectors-bg-video {
+    opacity: 0;
+    filter: blur(30px);
+    transform: scale(1.05);
+    transition: opacity 1.2s ease,
+                filter 1.2s ease,
+                transform 1.2s ease;
+}
+
+/* Reveal state */
+.sectors-section.reveal-active .sectors-bg-video {
+    opacity: 0.8; /* keep your original opacity */
+    filter: blur(0);
+    transform: scale(1);
+}
