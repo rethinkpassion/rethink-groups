@@ -453,52 +453,103 @@ nav {
 .nav-contact-btn {
   display: flex;
   flex-direction: row-reverse;
-  /* Arrow on left by default */
-  padding: 0.6rem 1.5rem;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+  gap: 12px;
+  padding: 5px;
+  width: 162px;
+  height: 54px;
   border-radius: 31px;
   background: var(--accent-gradients);
-
+background-image: linear-gradient(to right,
+      #48206E,
+      #6C1A4B);
   /* background: linear-gradient(90deg, rgba(173, 70, 255, 0.60) 0%, rgba(246, 51, 154, 0.60) 100%); */
+/* #48206E,
+  #6C1A4B */
   text-decoration: none;
-  color: white;
+  color: #fff;
   font-family: "GT America Trial", sans-serif;
   font-size: 14px;
   font-weight: 500;
-  text-transform: uppercase;
-  /* 171.429% */
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 
 .btn-arrow-wrapper {
-  /* width: 36px;
-    height: 36px; */
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 6s ease;
+  background: transparent;
+  transition: all 0.4s ease;
 }
 
 .btn-arrow {
   width: 23px;
   height: 23px;
   filter: brightness(0) invert(1);
-  transition: transform 3s ease;
+  transition: all 0.4s ease;
 }
 
-/* Button Hover */
-
+/* Same 3s animated hover as Know More button */
 .nav-contact-btn:hover {
-  flex-direction: row;
-  background: #9333ea;
+  animation: navContactButtonEffect 3s forwards;
+}
+
+.nav-contact-btn:hover .btn-text {
+  animation: navContactTextMove 3s forwards;
 }
 
 .nav-contact-btn:hover .btn-arrow-wrapper {
-  background: #ec4899;
+  animation: navContactIconMove 3s forwards;
+}
+
+@keyframes navContactButtonEffect {
+  0% {
+    background-image: linear-gradient(to right,
+      rgba(173, 70, 255, 0.6),
+      rgba(246, 51, 154, 0.6));
+  }
+  20% {
+    background-image: linear-gradient(to right, #7B2FFF, #9D2CFF);
+  }
+  100% {
+    background-image: linear-gradient(to right,
+      rgba(173, 70, 255, 0.6),
+      rgba(246, 51, 154, 0.6));
+  }
+}
+
+@keyframes navContactTextMove {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-25px);
+  }
+  100% {
+    transform: translateX(-25px);
+  }
+}
+
+@keyframes navContactIconMove {
+  0% {
+    transform: translateX(0);
+    background: transparent;
+  }
+  30% {
+    transform: translateX(90px);
+    background: #F6339A;
+  }
+  100% {
+    transform: translateX(90px);
+    background: transparent;
+  }
 }
 
 /* ===============================
