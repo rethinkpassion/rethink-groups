@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
    setTimeout(() => {
      document.body.classList.add("is-ready");
    }, TOTAL_MS);
+
+   loadSectorsContent();
+   loadInvestmentContent();
 });
 
 async function loadNavbar() {
@@ -198,4 +201,45 @@ function hideLoader() {
     setTimeout(() => {
         loader.style.display = "none";
     }, 500);
+}
+
+
+async function loadSectorsContent() {
+    const sectorsPlaceholder = document.getElementById('sectors-placeholder');
+    if (!sectorsPlaceholder) return;
+
+    try {
+        const response = await fetch('src/components/sectors/sectors.html');
+        if (response.ok) {
+            const html = await response.text();
+            sectorsPlaceholder.innerHTML = html;
+
+            // Initialize about-specific components
+            if (window.initSectorsComponents) {
+                window.initSectorsComponents();
+            }
+        }
+    } catch (error) {
+        console.error('Error loading about content:', error);
+    }
+}
+
+async function loadInvestmentContent() {
+    const investmentPlaceholder = document.getElementById('investment-placeholder');
+    if (!investmentPlaceholder) return;
+
+    try {
+        const response = await fetch('src/components/investment/investment.html');
+        if (response.ok) {
+            const html = await response.text();
+            investmentPlaceholder.innerHTML = html;
+
+            // Initialize about-specific components
+            if (window.initInvestmentComponents) {
+                window.initInvestmentComponents();
+            }
+        }
+    } catch (error) {
+        console.error('Error loading about content:', error);
+    }
 }
