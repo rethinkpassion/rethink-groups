@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadgoalContent();
     loadPhilosophyContent();
     loadIndustriesContent();
+   loadLifecycleContent();
+   loadFaqContent();
    const TOTAL_MS = 5500; // 13s approx
 
    setTimeout(() => {
@@ -162,6 +164,40 @@ async function loadIndustriesContent() {
         }
     } catch (error) {
         console.error('Error loading industries content:', error);
+    }
+}
+
+async function loadLifecycleContent() {
+    const lifecyclePlaceholder = document.getElementById('lifecycle-placeholder');
+    if (!lifecyclePlaceholder) return;
+
+    try {
+        const response = await fetch('src/components/lifecycle/lifecycle.html');
+        if (response.ok) {
+            const html = await response.text();
+            lifecyclePlaceholder.innerHTML = html;
+
+            if (window.initLifecycleComponents) {
+                window.initLifecycleComponents();
+            }
+        }
+    } catch (error) {
+        console.error('Error loading lifecycle content:', error);
+    }
+}
+
+async function loadFaqContent() {
+    const faqPlaceholder = document.getElementById('faq-placeholder');
+    if (!faqPlaceholder) return;
+
+    try {
+        const response = await fetch('src/components/faq/faq.html');
+        if (!response.ok) throw new Error('FAQ load failed');
+        const html = await response.text();
+        faqPlaceholder.innerHTML = html;
+        if (window.initFaqComponents) window.initFaqComponents();
+    } catch (e) {
+        console.error('Error loading FAQ:', e);
     }
 }
 

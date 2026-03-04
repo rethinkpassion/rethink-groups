@@ -1,0 +1,341 @@
+/* ===============================
+   Lifecycle Section - Structured Investment Lifecycle
+=================================*/
+@font-face {
+    font-family: "Neue Machina";
+    src: url("../../public/assets/fonts/neue-machina-free-for-personal-use/NeueMachina-Light.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Tiempos Headline";
+    src: url("../../public/assets/fonts/tiemposHeadline-semi/TiemposHeadline-Semibold.otf") format("opentype");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Neue Haas Grotesk Text Pro";
+    src: url("../../public/assets/fonts/Neue-Haas-Grotesk-Font/NHaasGroteskTXPro-55Rg.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("/public/assets/fonts/SpaceGrotesk/SpaceGrotesk-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+.lifecycle-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--primary-bg, #030712);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px 100px;
+    overflow-x: hidden;
+}
+
+.lifecycle-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 80% 50% at 50% 0%,
+        rgba(124, 58, 237, 0.08) 0%,
+        transparent 50%
+    );
+    pointer-events: none;
+}
+
+.lifecycle-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header */
+.lifecycle-header {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 60px;
+    width  :100%;
+}
+
+.lifecycle-label-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 24px;
+}
+
+.lifecycle-label-icon {
+    width: 20px;
+    height: 28px;
+    font-size: 12px;
+    object-fit: contain;
+    opacity: 0.9;
+    filter: brightness(0) invert(1);
+    /* transform: scaleY(-1); */
+}
+
+.lifecycle-label {
+    font-family: 'NHaasGrotesk', 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-main, #fff);
+    opacity: 0.9;
+    font-family: Helvetica;
+font-weight: 400;
+font-style: Regular;
+font-size: 18px;
+leading-trim: NONE;
+line-height: 24px;
+letter-spacing: 0%;
+text-transform: uppercase;
+
+}
+
+.lifecycle-title {
+    /* font-family: 'NHaasGrotesk', 'TiemposHeadline', serif; */
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-main, #fff);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    font-family: Tiempos Headline;
+font-weight: 300;
+font-style:Italic;
+font-size: 48px;
+leading-trim: NONE;
+line-height: 55px;
+letter-spacing: 0px;
+text-align: center;
+font-family: Tiempos Headline;
+font-weight: 300;
+font-style: Light Italic;
+font-size: 48px;
+leading-trim: NONE;
+line-height: 55px;
+letter-spacing: 0px;
+text-align: center;
+
+}
+
+.lifecycle-highlight {
+    font-family: 'TiemposHeadline', 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    background: linear-gradient(to top,rgb(232, 211, 255), rgb(186, 130, 249),rgb(123, 158, 236),#E81CFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lifecycle-description {
+    color: #FFFFFF;
+    /* max-width: 560px; */
+    margin: 0 auto;
+    font-family: Space Grotesk;
+font-weight: 300;
+font-style: Light;
+font-size: 20px;
+leading-trim: NONE;
+line-height: 28px;
+letter-spacing: 0px;
+text-align: center;
+white-space: nowrap;
+}
+
+/* Cards Grid */
+.lifecycle-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.lifecycle-card {
+    position: relative;
+    background: linear-gradient(135deg, #262830 0%, #0d0e12 35%, #0a0a0c 50%, #0d0e12 65%, #262830 100%);
+    border-radius: 18px;
+    padding: 28px 24px;
+    min-height: 350px;
+    display: flex;
+    width: 250px;
+    flex-direction: column;
+    border: 1px solid rgba(75, 193, 232, 0.5);
+    box-shadow: 0 0 12px rgba(75, 193, 232, 0.15);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Subtle cyan-blue border glow */
+.lifecycle-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(75, 193, 232, 0.6) 0%, rgba(75, 193, 232, 0.4) 50%, rgba(75, 193, 232, 0.25) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.lifecycle-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+}
+
+.lifecycle-card-title {
+    font-family: Tiempos Headline;
+    font-weight: 600;
+    font-style: Semibold;
+    font-size: 20px;
+    line-height: 32px;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+    margin-bottom: 15px;
+    color: var(--text-main, #fff);
+    transition: background 0.35s ease, -webkit-background-clip 0.35s ease, background-clip 0.35s ease;
+}
+
+.lifecycle-card:hover .lifecycle-card-title {
+    background: linear-gradient(90deg, #7c3aed, #E81CFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lifecycle-card-desc {
+    font-family: 'NHaasGrotesk', 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    /* color: var(--text-muted,rgb(255, 255, 255)); */
+    margin: 0 0 auto 0;
+    color: rgb(255, 255, 255);
+    flex: 1;
+    /* @font-face { */
+    font-family: "Space Grotesk";
+    src: url("/public/assets/fonts/SpaceGrotesk/SpaceGrotesk-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    letter-spacing: 2%;
+/* } */
+}
+
+.lifecycle-card-icon {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    min-height: 180px;
+    justify-content: center;
+}
+
+.lifecycle-card-icon img {
+    max-width: 100%;
+    max-height: 180px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    animation: iconFloat 2.5s ease-in-out infinite;
+}
+
+.lifecycle-card:nth-child(1) .lifecycle-card-icon img { animation-delay: 0s; }
+.lifecycle-card:nth-child(2) .lifecycle-card-icon img { animation-delay: 0.3s; }
+.lifecycle-card:nth-child(3) .lifecycle-card-icon img { animation-delay: 0.6s; }
+.lifecycle-card:nth-child(4) .lifecycle-card-icon img { animation-delay: 0.9s; }
+.lifecycle-card:nth-child(5) .lifecycle-card-icon img { animation-delay: 1.2s; }
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Reveal animation */
+.lifecycle-header,
+.lifecycle-cards {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.lifecycle-section.reveal-active .lifecycle-header,
+.lifecycle-section.reveal-active .lifecycle-cards {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.lifecycle-section.reveal-active .lifecycle-cards {
+    transition-delay: 0.2s;
+}
+
+/* Stagger card animation */
+.lifecycle-section.reveal-active .lifecycle-card {
+    animation: lifecycleCardFade 0.6s ease forwards;
+}
+
+.lifecycle-section.reveal-active .lifecycle-card:nth-child(1) { animation-delay: 0.3s; opacity: 0; }
+.lifecycle-section.reveal-active .lifecycle-card:nth-child(2) { animation-delay: 0.4s; opacity: 0; }
+.lifecycle-section.reveal-active .lifecycle-card:nth-child(3) { animation-delay: 0.5s; opacity: 0; }
+.lifecycle-section.reveal-active .lifecycle-card:nth-child(4) { animation-delay: 0.6s; opacity: 0; }
+.lifecycle-section.reveal-active .lifecycle-card:nth-child(5) { animation-delay: 0.7s; opacity: 0; }
+
+@keyframes lifecycleCardFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .lifecycle-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .lifecycle-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lifecycle-title {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 600px) {
+    .lifecycle-section {
+        padding: 80px 24px 60px;
+    }
+
+    .lifecycle-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .lifecycle-title {
+        font-size: 28px;
+    }
+
+    .lifecycle-description {
+        font-size: 16px;
+    }
+
+    .lifecycle-header {
+        margin-bottom: 40px;
+    }
+}
