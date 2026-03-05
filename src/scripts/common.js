@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPhilosophyContent();
     loadIndustriesContent();
    loadLifecycleContent();
-   loadFaqContent();
+   loadQuestionsContent();
    const TOTAL_MS = 5500; // 13s approx
 
    setTimeout(() => {
@@ -168,6 +168,24 @@ async function loadIndustriesContent() {
     }
 }
 
+async function loadIndustriesContent() {
+    const industriesPlaceholder = document.getElementById('industries-placeholder');
+    if (!industriesPlaceholder) return;
+
+    try {
+        const response = await fetch('src/components/industries/industries.html');
+        if (response.ok) {
+            const html = await response.text();
+            industriesPlaceholder.innerHTML = html;
+
+            if (window.initIndustriesComponents) {
+                window.initIndustriesComponents();
+            }
+        }
+    } catch (error) {
+        console.error('Error loading industries content:', error);
+    }
+}
 async function loadLifecycleContent() {
     const lifecyclePlaceholder = document.getElementById('lifecycle-placeholder');
     if (!lifecyclePlaceholder) return;
@@ -186,21 +204,26 @@ async function loadLifecycleContent() {
         console.error('Error loading lifecycle content:', error);
     }
 }
-
-async function loadFaqContent() {
-    const faqPlaceholder = document.getElementById('faq-placeholder');
-    if (!faqPlaceholder) return;
+async function loadQuestionsContent() {
+    const questionsPlaceholder = document.getElementById('questions-placeholder');
+    if (!questionsPlaceholder) return;
 
     try {
-        const response = await fetch('src/components/faq/faq.html');
-        if (!response.ok) throw new Error('FAQ load failed');
-        const html = await response.text();
-        faqPlaceholder.innerHTML = html;
-        if (window.initFaqComponents) window.initFaqComponents();
-    } catch (e) {
-        console.error('Error loading FAQ:', e);
+        const response = await fetch('src/components/questions/questions.html');
+        if (response.ok) {
+            const html = await response.text();
+            questionsPlaceholder.innerHTML = html;
+
+            if (window.initQuestionsComponents) {
+                window.initQuestionsComponents();
+            }
+        }
+    } catch (error) {
+        console.error('Error loading questions content:', error);
     }
 }
+
+
 
 function initNavbarScroll() {
     const logoImg = document.querySelector('.logo-img');
