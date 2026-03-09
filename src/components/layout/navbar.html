@@ -7,7 +7,7 @@
             <ul class="nav-links">
                 <li><a href="#home-placeholder" id="nav-home" class="nav-scroll">Home</a></li>
                 <li><a href="#about-placeholder" id="nav-about" class="nav-scroll">About Us</a></li>
-                <li><a href="#goal-placeholder" id="nav-goal" class="nav-scroll">Goal</a></li>
+                <li><a href="#sectors-placeholder" id="nav-sectors" class="nav-scroll">Sectors</a></li>
                 <li><a href="#strategic-placeholder" id="nav-approach" class="nav-scroll">Approach</a></li>
             </ul>
 
@@ -18,5 +18,25 @@
                 <img src="public/assets/images/Arrow.svg" alt="" class="btn-arrow">
             </span>
         </a>
+        <button type="button" class="mobile-menu-btn" id="mobile-menu" aria-label="Open menu">
+            <img src="public/assets/icons/menu%20l-ogo.png" alt="" class="mobile-menu-icon">
+        </button>
     </div>
 </nav>
+<!-- Mobile menu overlay - white panel from right -->
+<div class="mobile-menu-overlay" id="mobile-menu-overlay" aria-hidden="true">
+    <div class="mobile-menu-backdrop"></div>
+    <div class="mobile-menu-panel">
+        <button type="button" class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">
+            <span class="close-line"></span>
+            <span class="close-line"></span>
+        </button>
+        <nav class="mobile-nav">
+            <a href="#home-placeholder" class="nav-scroll mobile-nav-link active">Home</a>
+            <a href="#about-placeholder" class="nav-scroll mobile-nav-link">About Us</a>
+            <a href="#sectors-placeholder" class="nav-scroll mobile-nav-link">Sectors</a>
+            <a href="#strategic-placeholder" class="nav-scroll mobile-nav-link">Approach</a>
+            <a href="src/components/contact/" class="mobile-nav-link">Contact</a>
+        </nav>
+    </div>
+</div>

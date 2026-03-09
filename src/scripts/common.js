@@ -50,7 +50,7 @@ function setActiveLink() {
     const page = path.split("/").pop() || "index.html";
     const hash = window.location.hash.slice(1) || null;
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    document.querySelectorAll('.nav-links a, .mobile-nav .nav-scroll').forEach(link => {
         const href = link.getAttribute('href') || '';
         const isSectionLink = href.startsWith('#');
         const linkSectionId = isSectionLink ? href.slice(1) : null;
@@ -63,20 +63,43 @@ function setActiveLink() {
 
 function initMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
+    const mobileOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileClose = document.getElementById('mobile-menu-close');
 
-    if (mobileMenu && navLinks) {
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenu.classList.toggle('open');
+    function openMenu() {
+        if (mobileOverlay) {
+            mobileOverlay.classList.add('active');
+            mobileOverlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeMenu() {
+        if (mobileOverlay) {
+            mobileOverlay.classList.remove('active');
+            mobileOverlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', openMenu);
+    }
+    if (mobileClose) {
+        mobileClose.addEventListener('click', closeMenu);
+    }
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileOverlay || e.target.classList?.contains('mobile-menu-backdrop')) closeMenu();
         });
     }
+
+    window.closeMobileMenu = closeMenu;
 }
 
 function initNavbarSmoothScroll() {
-    const scrollLinks = document.querySelectorAll('.nav-scroll, .nav-links a[href^="#"]');
-    const navLinksEl = document.querySelector('.nav-links');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const scrollLinks = document.querySelectorAll('.nav-scroll, .nav-links a[href^="#"], .mobile-nav .nav-scroll[href^="#"]');
+    const mobileOverlay = document.getElementById('mobile-menu-overlay');
 
     scrollLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -88,17 +111,21 @@ function initNavbarSmoothScroll() {
                 e.preventDefault();
                 section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 setActiveLinkBySection(id);
-                if (navLinksEl && navLinksEl.classList.contains('active')) {
-                    navLinksEl.classList.remove('active');
-                    if (mobileMenu) mobileMenu.classList.remove('open');
+                if (mobileOverlay && mobileOverlay.classList.contains('active') && typeof window.closeMobileMenu === 'function') {
+                    window.closeMobileMenu();
                 }
             }
         });
     });
+
+    const mobileNavContact = document.querySelector('.mobile-nav a[href*="contact"]');
+    if (mobileNavContact && typeof window.closeMobileMenu === 'function') {
+        mobileNavContact.addEventListener('click', () => window.closeMobileMenu());
+    }
 }
 
 function setActiveLinkBySection(sectionId) {
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    document.querySelectorAll('.nav-links a, .mobile-nav .nav-scroll').forEach(link => {
         const href = link.getAttribute('href') || '';
         if (href === '#' + sectionId) {
             link.classList.add('active');
