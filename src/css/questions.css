@@ -170,7 +170,7 @@
             rgba(255, 255, 255, 0.01)); */
     transition: .3s;
     position: relative;
-    border-radius: 18px;
+    /* border-radius: 18px; */
     padding: 1px;
     /* important for gradient border */
     background: linear-gradient(90deg, #2cc4ff, #9c3dff);
@@ -195,15 +195,15 @@
     cursor: pointer;
 }
 
-.question-box:hover {
+/* .question-box:hover {
     background: #101018;
-}
+} */
 
 /* PLUS ICON */
 .question-inner {
     background: #0c0c10;
     border-radius: 17px;
-    padding: 24px 28px;
+    /* padding: 24px 28px; */
 }
 
 .icon {
@@ -239,23 +239,142 @@
     transition: all .35s ease;
 }
 
-/* ACTIVE */
-
-.question-item.active .question-answer {
-    max-height: 200px;
-    padding: 0 26px 22px;
+/* ACTIVE - question bottom radius 0 for sharp join with answer */
+.question-item.active .question-inner {
+    /* border-radius: 17px 17px 0 0; */
+    
 }
 
 .question-item.active .question-answer {
     max-height: 300px;
     opacity: 1;
-    margin-top: 18px;
+    margin-top: 0;
+    padding: 0 26px 22px;
+    /* border-radius: 0 0 17px 17px; */
 }
 
 .question-item.active .icon {
     transform: rotate(45deg);
 }
 
-.question-item.active {
+/* .question-item.active {
     box-shadow: 0 0 40px rgba(160, 80, 255, 0.15);
+} */
+
+/* ===============================
+   QUESTIONS MOBILE VIEW
+   - Vertical stacked, centered
+   - Dark gradient background
+   - Glossy accordion buttons
+=================================*/
+
+@media (max-width: 768px) {
+    .question-section {
+        padding: 2rem 2rem 4rem;
+        min-height: auto;
+        background: linear-gradient(180deg, #0a0a0f 0%, #0c0c10 40%, #12081a 70%, #15091e 100%);
+        position: relative;
+        height: 100vh;
+    }
+
+    .question-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 20px,
+            rgba(255, 255, 255, 0.02) 20px,
+            rgba(255, 255, 255, 0.02) 21px
+        );
+        pointer-events: none;
+    }
+
+    .question-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+        z-index: 1;
+        height: auto;
+    }
+
+    /* Title - stacked, centered */
+    .question-left {
+        /* text-align: center; */
+        width: 100%;
+    }
+
+    .question-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+
+    .question-title .thin {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .question-title .gradient {
+        font-size: 2.25rem;
+        line-height: 1.2;
+    }
+
+    .question-subtitle {
+        margin: 0.5rem 0 0;
+        font-size: 1.125rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Questions - full width, centered stack */
+    .question-right {
+        width: 100%;
+        max-width: 100%;
+        gap: 12px;
+    }
+
+   .question-item {
+        border-radius: 14px;
+    }
+
+         .question-inner {
+        border-radius: 13px 13px;
+    }
+
+    .question-box {
+        font-size:10px;
+        line-height: 1.4;
+        text-align: left;
+        padding-right:0 0.3rem;
+    }
+    .question-answer{
+        font-size: 10px;
+    }
+    .icon {
+        width: 20px;
+        height: 20px;
+        font-size: 18px;
+        flex-shrink: 0;
+        border-radius: 20%;
+        box-shadow: 0 0 12px rgba(100, 150, 255, 0.25);
+    }
+
+    .question-item.active .icon {
+        box-shadow: 0 0 16px rgba(155, 77, 255, 0.4);
+    }
+
+    /* 3D cube - bottom left */
+    .question-cube {
+        width: 120px;
+        left: -29px;
+        bottom: 15%;
+        opacity: 0.9;
+    }
+
+    .question-item.active .question-answer {
+        max-height: 250px;
+        padding: 0 20px 18px;
+    }
 }

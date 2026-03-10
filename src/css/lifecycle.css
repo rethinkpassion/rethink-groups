@@ -318,24 +318,91 @@ white-space: nowrap;
     }
 }
 
-@media (max-width: 600px) {
+/* ===============================
+   LIFECYCLE MOBILE
+   - Horizontal scroll cards
+   - Middle card active/focused
+=================================*/
+
+@media (max-width: 768px) {
+    .lifecycle-container {
+        padding: 0 1.25rem;
+    }
+         .lifecycle-label {
+             /* margin-bottom: 1rem; */
+             font-size: 12px;
+         }
+
     .lifecycle-section {
-        padding: 80px 24px 60px;
-    }
-
-    .lifecycle-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .lifecycle-title {
-        font-size: 28px;
-    }
-
-    .lifecycle-description {
-        font-size: 16px;
+        padding: 60px 0 80px;
     }
 
     .lifecycle-header {
-        margin-bottom: 40px;
+        padding: 0 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .lifecycle-title {
+        font-size:28px;
+    }
+
+    .lifecycle-description {
+        font-size: 12px;
+        white-space: normal;
+    }
+
+    /* Horizontal scroll container - visible left/right gaps */
+    .lifecycle-cards {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding: 1rem 1.5rem;
+        margin: 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .lifecycle-cards::-webkit-scrollbar {
+        display: none;
+    }
+
+    .lifecycle-card {
+        flex-shrink: 0;
+        width: 250px;
+        min-height: 320px;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+
+    /* Active/focused card - center of viewport */
+    .lifecycle-card.active {
+        border-color: rgba(75, 193, 232, 0.8);
+        box-shadow: 0 0 24px rgba(75, 193, 232, 0.3);
+    }
+
+    .lifecycle-card.active::before {
+        background: linear-gradient(135deg, rgba(75, 193, 232, 0.8) 0%, rgba(75, 193, 232, 0.5) 50%, rgba(75, 193, 232, 0.35) 100%);
+    }
+
+    .lifecycle-card.active .lifecycle-card-title {
+        background: linear-gradient(90deg, #7c3aed, #E81CFF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .lifecycle-card-title{
+        font-size: 18px;
+    }
+    .lifecycle-card-desc{
+        font-size: 14px;
+    }
+    .lifecycle-card-icon{
+        min-height: 100px;
     }
 }
+
