@@ -38,10 +38,6 @@ function initSectorsReveal() {
     });
 }
 
-/* ===========================
-   SECTOR HOVER IMAGE PREVIEW
-=========================== */
-
 function initSectorHoverPreview() {
 
     const preview = document.getElementById("sector-hover-preview");
@@ -49,28 +45,58 @@ function initSectorHoverPreview() {
 
     if (!preview || items.length === 0) return;
 
-    items.forEach(item => {
+    items.forEach((item) => {
+      item.addEventListener("mouseenter", function () {
+        const imageSrc = this.getAttribute("data-image");
+        if (!imageSrc) return;
 
-        item.addEventListener("mouseenter", function () {
+        preview.src = imageSrc;
+        preview.style.opacity = "1";
 
-            const imageSrc = this.getAttribute("data-image");
-            if (!imageSrc) return;
+        /* Only for devices that support hover (desktop) */
+        if (window.matchMedia("(hover: hover)").matches) {
+          const rect = this.getBoundingClientRect();
 
-            preview.src = imageSrc;
-            preview.style.opacity = "1";
+          preview.style.top =
+            rect.top + window.scrollY + (rect.height / 2 - 51) + "px";
 
-            const rect = this.getBoundingClientRect();
+          preview.style.right = rect.right + 4 + "px";
+        }
+      });
 
-            preview.style.top =
-                rect.top + window.scrollY + (rect.height / 2 - 51) + "px";
+      item.addEventListener("mouseleave", function () {
+        preview.style.opacity = "0";
+      });
 
-            preview.style.right =
-                rect.right + 4 + "px";   // 10px gap
-        });
+      /* Mobile tap support */
+      item.addEventListener("click", function () {
+        const imageSrc = this.getAttribute("data-image");
+        if (!imageSrc) return;
 
-        item.addEventListener("mouseleave", function () {
-            preview.style.opacity = "0";
-        });
+        preview.src = imageSrc;
+        preview.style.opacity = "1";
 
+        if (!window.matchMedia("(hover: hover)").matches) {
+          const itemRect = this.getBoundingClientRect();
+          const listRect = this.closest(
+            ".primary-sectors-list",
+          ).getBoundingClientRect();
+
+          /* calculate position relative to the list */
+          const topPosition = itemRect.top - listRect.top;
+
+          preview.style.top = topPosition + 5 + "px";
+          const screenWidth = window.innerWidth;
+
+          if (screenWidth <= 600) {
+            /* phones */
+            preview.style.left = "210px";
+          } else if (screenWidth <= 1024) {
+            /* iPad / tablets */
+            preview.style.left = "400px";
+          }
+
+        }
+      });
     });
 }

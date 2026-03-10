@@ -207,7 +207,6 @@
 
 #sector-hover-preview {
     position: fixed;
-    /* VERY IMPORTANT */
     width: 169px;
     height: 102px;
     object-fit: cover;
@@ -392,13 +391,232 @@
     filter: blur(30px);
     transform: scale(1.05);
     transition: opacity 1.2s ease,
-                filter 1.2s ease,
-                transform 1.2s ease;
+        filter 1.2s ease,
+        transform 1.2s ease;
 }
 
 /* Reveal state */
 .sectors-section.reveal-active .sectors-bg-video {
-    opacity: 0.8; /* keep your original opacity */
+    opacity: 0.8;
+    /* keep your original opacity */
     filter: blur(0);
     transform: scale(1);
+}
+
+
+.mobile-text {
+    display: none;
+}
+
+/* =================================
+   TABLET RESPONSIVE (iPad)
+=================================*/
+
+@media (max-width: 1024px) {
+
+    .sectors-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 40px;
+    }
+
+    .sectors-content {
+        width: 100%;
+        padding: 0;
+        gap: 50px;
+    }
+
+    .primary-sectors-list {
+        margin-left: 0;
+    }
+
+    .primary-sectors-list p {
+        font-size: 26px;
+        line-height: 30px;
+        padding-left: 45px;
+    }
+
+    .sectors-side-video {
+        position: relative;
+        width: 350px;
+        height: auto;
+        margin-top: 60px;
+        bottom: auto;
+        right: auto;
+    }
+
+    .sectors-side-video video {
+        width: 100%;
+        height: auto;
+    }
+
+    .primary-sectors-list {
+        position: relative;
+    }
+
+    #sector-hover-preview {
+
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        width: 200px;
+        height: 130px;
+
+        border-radius: 12px;
+        z-index: 5;
+
+    }
+
+}
+
+
+/* =================================
+   TABLET PORTRAIT / LARGE PHONES
+=================================*/
+
+@media (max-width: 768px) {
+
+    .sectors-section {
+        padding: 80px 25px;
+    }
+
+    .primary-sectors-text {
+        font-size: 12px;
+    }
+
+    .primary-sectors-list {
+        gap: 24px;
+    }
+
+    .primary-sectors-list p {
+        font-size: 16.34px;
+        line-height: 28px;
+        padding-left: 40px;
+    }
+
+    .primary-sectors-list p::before {
+        width: 30px;
+        height: 20px;
+    }
+
+    .sectors-btn-text {
+
+        font-family: "GT America Trial", sans-serif;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 12.41px;
+        letter-spacing: 0.52px;
+        text-transform: uppercase;
+
+        white-space: nowrap;
+
+    }
+
+    .sectors-button {
+        width: 170px;
+        height: 48px;
+    }
+
+    .sectors-side-video video {
+
+        width: 350px;
+        height: 318px;
+
+        border-radius: 25.86px;
+        object-fit: cover;
+
+    }
+
+    .desktop-text {
+        display: none;
+    }
+
+    .mobile-text {
+        display: inline;
+    }
+
+
+    #sector-hover-preview {
+
+        width: 160px;
+        height: 100px;
+        right: 0;
+
+    }
+
+    .sectors-button {
+        overflow: hidden;
+        /* keep icon inside button */
+    }
+
+    /* smaller icon movement */
+    @keyframes iconMoveMobile {
+
+        0% {
+            transform: translateX(0);
+            background: transparent;
+        }
+
+        30% {
+            transform: translateX(100px);
+            /* stays inside button */
+            background: #F6339A;
+        }
+
+        100% {
+            transform: translateX(0);
+            background: transparent;
+        }
+
+    }
+
+    /* override desktop animation */
+
+    .sectors-button:hover .icon-wrapper {
+        animation: iconMoveMobile 3s forwards;
+    }
+}
+
+
+/* =================================
+   SMALL PHONES
+=================================*/
+
+@media (max-width: 480px) {
+
+    .sectors-section {
+        padding: 60px 18px;
+    }
+
+    .primary-sectors-list {
+        gap: 20px;
+    }
+
+    .primary-sectors-list p {
+        font-size: 16.34px;
+        line-height: 26px;
+        padding-left: 36px;
+    }
+
+    .sectors-button {
+        width: 150px;
+        height: 44px;
+        font-size: 12px;
+    }
+
+    .sectors-side-video {
+        margin-top: 40px;
+        border-radius: 25px;
+    }
+
+    #sector-hover-preview {
+
+        width: 87.39px;
+        height: 52.74px;
+
+        border-radius: 4.14px;
+
+        right: 0;
+    }
 }
