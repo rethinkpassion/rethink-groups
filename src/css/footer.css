@@ -245,34 +245,39 @@ font-family: 'TiemposHeadline';
     gap:8px;
 }
 
-.letter-wrapper{
-    position:relative;
-    display:inline-block;
-}
-.letter-img{
-    display:block;
-    transition:0.4s ease;
+.letter-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
 }
 
-.letter-wrapper::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:linear-gradient(90deg,#7c3aed,#ec4899);
-    opacity:0;
-    pointer-events:none;
-    mix-blend-mode:screen;
-    transition:0.4s ease;
-}
-.image-text-wrapper:hover .letter-wrapper::after{
-opacity:1;
+.letter-wrapper .letter-img {
+    position: relative;
+    z-index: 0;
 }
 
-.image-text-wrapper:hover .letter-img{
-filter: brightness(0) invert(1);    
+.letter-img {
+    display: block;
+    transition: 0.4s ease;
+}
+
+/* Letter filled with purple-to-pink gradient on hover */
+.letter-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(90deg, #8b5cf6 0%, #a855f7 35%, #ec4899 70%, #f472b6 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* Hover any letter → all letters show gradient fill */
+.image-text-wrapper:hover .letter-gradient {
+    opacity: 1;
 }
 
 

@@ -24,7 +24,18 @@ function letterBox() {
         }
         const wrapper = document.createElement('div');
         wrapper.classList.add('letter-wrapper');
-        wrapper.style.setProperty('--mask', `url(../../public/assets/images/Vector-${char}.svg)`);
+        const gradientEl = document.createElement('div');
+        gradientEl.classList.add('letter-gradient');
+        const maskUrl = 'url("public/assets/images/mask/Vector-' + char + '.svg")';
+        gradientEl.style.webkitMaskImage = maskUrl;
+        gradientEl.style.maskImage = maskUrl;
+        gradientEl.style.webkitMaskSize = 'contain';
+        gradientEl.style.maskSize = 'contain';
+        gradientEl.style.webkitMaskRepeat = 'no-repeat';
+        gradientEl.style.maskRepeat = 'no-repeat';
+        gradientEl.style.webkitMaskPosition = 'center';
+        gradientEl.style.maskPosition = 'center';
+        wrapper.appendChild(gradientEl);
         const img = document.createElement('img');
         img.src = `public/assets/images/Vector-${char}.svg`;
         img.classList.add('letter-img');

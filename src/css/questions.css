@@ -87,7 +87,6 @@
     font-size: 90px;
     line-height: 1.05;
     font-family: serif;
-    margin-left: 45px;
 }
 
 .thin {
@@ -103,6 +102,7 @@
 
 .gradient {
     font-family: Tiempos Headline medium;
+    /* font-style: italic; */
     font-size: 90px;
     leading-trim: NONE;
     line-height: 88px;
@@ -170,7 +170,7 @@
             rgba(255, 255, 255, 0.01)); */
     transition: .3s;
     position: relative;
-    /* border-radius: 18px; */
+    border-radius: 18px;
     padding: 1px;
     /* important for gradient border */
     background: linear-gradient(90deg, #2cc4ff, #9c3dff);
@@ -250,7 +250,6 @@
     opacity: 1;
     margin-top: 0;
     padding: 0 26px 22px;
-    /* border-radius: 0 0 17px 17px; */
 }
 
 .question-item.active .icon {
