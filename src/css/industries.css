@@ -159,6 +159,72 @@
     flex: 1;
     max-width: 55%;
 }
+.industries-subtitle{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    transition:all .3s ease;
+}
+.industries-subtitle:hover{
+    transform:translateX(6px);
+    color:#2f7de1;
+}
+.industries-arrow{
+    width:0;
+    height:28px;
+    opacity:0;
+    overflow:hidden;
+    transform:translateX(-10px);
+    transition:all .3s ease;
+}
+.industries-subtitle:hover .industries-arrow{
+    width:43px;
+    opacity:1;
+    transform:translateX(0);
+    background:url("/public/assets/icons/sectors-section-arrow.png") no-repeat center;
+    background-size:contain;
+}
+.industries-text img{
+    position:absolute;
+    width:100px;
+    height:90px;
+    margin-left:450px;
+    margin-top:-140px;
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s ease;
+}
+.industries-subtitle:hover + img{
+    opacity:1;
+    visibility:visible;
+}
+.industries-list li{
+    position: relative;
+    padding-right: 30px;
+    margin-bottom: 14px;
+}
+.industries-list li::after{
+    content:"";
+    position:absolute;
+    right:-90px;
+    top:50%;
+    transform:translateY(-50%) rotate(0deg);
+    width:18px;
+    height:18px;
+    background:url("/public/assets/images/Arrow_indus.png") no-repeat center;
+    background-size:contain;
+    opacity:0;
+}
+.industries-list li:hover::after{
+    width: 40px;
+    height: 40px;
+    opacity:1;
+    filter: brightness(0) saturate(100%) invert(67%) sepia(48%) saturate(3179%) hue-rotate(211deg) brightness(101%) contrast(101%);
+}
+.industries-list li:hover{
+    transform:translateX(6px);
+}
 
 
 .industries-highlight {
@@ -301,33 +367,235 @@
         margin-top: 30px;
     }
 }
+@media (max-width:1024px){
 
-@media (max-width: 768px) {
-    .industries-container {
-        padding: 100px 24px 60px;
+    .industries-container{
+        padding:120px 40px 60px;
     }
 
-    .industries-title-fixed {
-        font-size: 28px;
-        top: 100px;
+    .industries-title-fixed{
+        font-size:36px;
+        line-height:42px;
+        top:90px;
     }
 
-    .industries-subtitle {
-        font-size: 22px;
+    .industries-carousel-wrapper{
+        height:85vh;
+        min-height:85vh;
     }
 
-    .industries-carousel-wrapper {
-        height: auto;
-        min-height: 400px;
+    .industries-slide{
+        height:85vh;
+        padding:0 40px;
     }
 
-    .industries-slide-num {
-        font-size: 48px;
-        margin-right: 16px;
+    .industries-content{
+        flex-direction:row;
+        gap:40px;
     }
 
-    .industries-corner-accent {
-        max-width: 140px;
-        max-height: 120px;
+    .industries-image-wrap{
+        width:45%;
+        justify-content:center;
+    }
+
+    .industries-image-wrap img{
+        width:260px;
+        height:260px;
+    }
+
+    /* .industries-text{
+        width:55%;
+    } */
+
+    .industries-subtitle{
+        font-size:24px;
+    }
+
+    .industries-desc{
+        font-size:15px;
+    }
+
+    .industries-list li{
+        font-size:15px;
+    }
+
+    .industries-conclusion{
+        font-size:14px;
+    }
+
+    .industries-hover-img{
+        width:100px;
+        height:65px;
+        margin-left:320px;
+        margin-top:-70px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .industries-container{
+        padding:100px 20px 40px;
+    }
+
+    .industries-title-fixed{
+        font-size:30px;
+        line-height:38px;
+        top:80px;
+    }
+
+    .industries-carousel-wrapper{
+        height:80vh;
+        min-height:80vh;
+        overflow:hidden;
+    }
+
+    .industries-track{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .industries-slide{
+        height:80vh;
+        min-height:80vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:0 24px;
+    }
+    .industries-content{
+        flex-direction:column;
+        gap:20px;
+        text-align:left;
+        display: flex;
+    }
+    .industries-subtitle{
+        width: 340px;
+        height:auto;
+        margin-left:12px;
+        transform:translateX(-10px);
+        transition:all 0.3s ease;
+    }
+    .industries-subtitle:focus + img{
+        opacity:1;
+        visibility:visible;
+        transform:translateX(0);
+    }
+    .industries-subtitle{
+        font-size:20px;
+    }
+    .industries-desc{
+        font-size:14px;
+    }
+    .industries-list{
+        gap:12px;
+    }
+    .industries-list li{
+        font-size:14px;
+    }
+    .industries-conclusion{
+        font-size:13px;
+    }
+    .industries-image-wrap{
+        order: 2;
+        width:100%;
+        justify-content:center;
+    }
+    .industries-image-wrap img{
+        width:200px;
+        height:200px;
+        margin-top: 50px;
+    }
+    .industries-slide-num{
+        display:none;
+    }
+    .industries-corner-accent{
+        position:absolute;
+        bottom:-20px;
+        left:-90px;
+        animation: accentFloatMobile 4s ease-in-out infinite;
+
     }
 }
+
+@media (max-width:480px){
+
+    .industries-container{
+        padding:80px 16px 40px;
+    }
+
+    .industries-title-fixed{
+        font-size:26px;
+        line-height:32px;
+        top:70px;
+    }
+
+    .industries-carousel-wrapper{
+        height:75vh;
+    }
+
+    .industries-slide{
+        height:75vh;
+        padding:0 16px;
+    }
+
+    .industries-content{
+        flex-direction:column;
+        gap:18px;
+    }
+
+    .industries-subtitle{
+        font-size:18px;
+        width:100%;
+        margin-left:0;
+    }
+
+    .industries-desc{
+        font-size:13px;
+    }
+
+    .industries-list li{
+        font-size:13px;
+    }
+
+    .industries-conclusion{
+        font-size:12px;
+    }
+
+    .industries-image-wrap{
+        width:100%;
+        justify-content:center;
+    }
+
+    .industries-image-wrap img{
+        width:170px;
+        height:170px;
+        margin-top:40px;
+    }
+
+    .industries-hover-img{
+        width:70px;
+        height:45px;
+        margin-left:250px;
+        margin-top:-55px;
+    }
+
+    .industries-corner-accent{
+        left:-70px;
+        bottom:-15px;
+    }
+
+}
+@keyframes accentFloatMobile{
+    0%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-70px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+
