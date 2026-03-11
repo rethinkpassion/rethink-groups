@@ -294,27 +294,22 @@ async function loadQuestionsContent() {
 
 function initNavbarScroll() {
     const logoImg = document.querySelector('.logo-img');
-    if (!logoImg) return;
+    const header = document.querySelector('header');
+    if (!header) return;
 
     const originalLogo = "public/assets/images/logo.svg";
     const coloredLogo = "public/assets/images/logo-colored.svg";
 
-    // Set initial state based on current scroll
-    if (window.scrollY > 50) {
-        logoImg.src = coloredLogo;
+    function updateScrollState() {
+        const scrolled = window.scrollY > 50;
+        header.classList.toggle('is-scrolled', scrolled);
+        if (logoImg) {
+            logoImg.src = scrolled ? coloredLogo : originalLogo;
+        }
     }
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            if (logoImg.src.indexOf(coloredLogo) === -1) {
-                logoImg.src = coloredLogo;
-            }
-        } else {
-            if (logoImg.src.indexOf(originalLogo) === -1) {
-                logoImg.src = originalLogo;
-            }
-        }
-    });
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState);
 }
 /* ===============================
    LOADER CONTROL

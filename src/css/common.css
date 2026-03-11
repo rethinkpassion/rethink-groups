@@ -393,6 +393,11 @@ nav {
   height: 40px;
   width: auto;
   display: block;
+  transition: filter 0.3s ease;
+}
+
+.logo-container:hover .logo-img {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(89%) saturate(1500%) hue-rotate(208deg) brightness(98%) contrast(97%);
 }
 
 /* ===============================
@@ -452,7 +457,7 @@ nav {
 
 .nav-links a:hover {
   color: var(--text-main);
-  background: linear-gradient(90deg, rgba(124, 58, 237, 0.6), rgba(219, 39, 119, 0.6));
+  /* background: #3a84f6; */
 }
 
 .nav-links a.active::after {
@@ -577,9 +582,17 @@ background-image: linear-gradient(to right,
 }
 
 .mobile-menu-icon {
+  display: block;
   width: 28px;
-  height: auto;
-  filter: brightness(0) invert(1);
+  height: 24px;
+  background-color: #fff;
+  mask: url('/public/assets/icons/nav-icon.svg') center / contain no-repeat;
+  -webkit-mask: url('/public/assets/icons/nav-icon.svg') center / contain no-repeat;
+  transition: background 0.3s ease;
+}
+
+header.is-scrolled .mobile-menu-icon {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #7c3aed 100%);
 }
 
 /* ===============================

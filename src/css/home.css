@@ -183,7 +183,7 @@
 }
 
 .scroll-icon-svg:hover {
-    filter: invert(26%) sepia(94%) saturate(6144%) hue-rotate(263deg) brightness(94%) contrast(115%);
+    filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1500%) hue-rotate(197deg) brightness(98%) contrast(97%);
     transform: scale(1.1);
     width: 62px;
 }
@@ -343,7 +343,9 @@
         font-size: 0.5rem;
         text-transform: none;
     }
-
+.scroll-icon-svg:hover {
+    width: 44px;
+}
     /* Match circle radius to container - 44px = half of 88px for consistent radius */
     .circular-text span {
         transform-origin: 0 44px;
