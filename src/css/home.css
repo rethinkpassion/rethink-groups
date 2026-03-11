@@ -77,10 +77,8 @@
 }
 
 .hero-content {
-    /* max-width: 900px; */
-    max-width: 1083px;
+    max-width: 900px;
     z-index: 10;
-    margin-top: -100px;
 }
 
 .hero-subtitle {
@@ -95,16 +93,16 @@
 }
 
 .hero-title {
-    /* font-size: 55px; */
-    font-size: 67px;
+    font-size: 55px;
     font-weight: 800;
-    background: linear-gradient(90deg, #3b82f6 0%, #0ea5e9 50%, #22d3ee 100%);
+    background: linear-gradient(90deg, #3b82f6, #60a5fa, #a3cdfd);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 2rem;
     line-height: 70px;
     font-family: "Tiempos Headline bold";
+
 }
 
 .hero-description {
@@ -156,11 +154,12 @@
     position: absolute;
     left: 50%;
     transform-origin: 0 60px;
-    /* Radius of the circle - 60px for 120px container (half) */
+    /* Radius of the circle */
     color: #FFF;
     transform: rotate(calc(var(--i) * 10deg));
     font-size: 0.7rem;
     color: var(--text-muted);
+    text-transform: uppercase;
     font-weight: 500;
 }
 
@@ -191,8 +190,7 @@
 .hero-secondary-content {
     position: absolute;
     bottom: 4rem;
-    /* right: 2rem; */
-    right: 12rem;
+    right: 2rem;
     text-align: left;
     max-width: 400px;
     color: rgba(255, 255, 255, 0.50);
@@ -210,10 +208,6 @@
     flex-wrap: wrap;
     column-gap: 0.45rem;
     row-gap: 0.15rem;
-    /* text-indent: 30px; */
-}
-#reveal-text span:first-child {
-    margin-left: 50px;
 }
 
 #reveal-text span {
@@ -228,10 +222,6 @@
     color: #fff;
     font-weight: 400;
 }
-
-/* ===============================
-   HOME MOBILE VIEW
-=================================*/
 
 @media (max-width: 768px) {
     .hero-section {
