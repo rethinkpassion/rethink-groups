@@ -20,11 +20,12 @@ window.initIndustriesComponents = function () {
     }
 
     function goToSlide(index, animate = true) {
-        const slideHeight = getSlideHeight();
-        const offset = -index * slideHeight;
+        // const slideHeight = getSlideHeight();
+        // const offset = -index * slideHeight;
 
         track.style.transition = animate ? `transform ${TRANSITION_MS}ms ease` : 'none';
-        track.style.transform = `translateY(${offset}px)`;
+        // track.style.transform = `translateY(${offset}px)`;
+        track.style.transform = `translateY(-${index * 100}%)`;
         currentIndex = index;
     }
 

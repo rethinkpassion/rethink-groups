@@ -114,19 +114,20 @@
 .industries-carousel-wrapper {
     overflow: hidden;
     height: 75vh;
+    /* height: 80vh; */
     min-height: 500px;
 }
 
-.industries-track {
-    display: flex;
-    flex-direction: column;
-    transition: transform 600ms ease;
+.industries-track{
+    display:flex;
+    flex-direction:column;
+    height:100%;
 }
 
 /* Each slide - must match wrapper height so only one slide is visible */
 .industries-slide {
     min-height: 75vh;
-    height: 75vh;
+    height: 100%;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -134,12 +135,15 @@
     flex-shrink: 0;
     padding: 20px 0 20px 0;
 }
+.industries-track{
+    will-change: transform;
+}
 
 .industries-content {
     display: flex;
     align-items: stretch;
     justify-content: center;
-    gap: 180px;
+    gap: 120px;
     width: 100%;
     max-width: 1400px;
     min-height: 350px;
@@ -349,24 +353,6 @@
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
-    .industries-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .industries-text {
-        max-width: 100%;
-    }
-
-    .industries-image-wrap {
-        width: 70%;
-        max-width: 350px;
-        align-self: center;
-        justify-content: center;
-        margin-top: 30px;
-    }
-}
 @media (max-width:1024px){
 
     .industries-container{
@@ -404,10 +390,6 @@
         height:260px;
     }
 
-    /* .industries-text{
-        width:55%;
-    } */
-
     .industries-subtitle{
         font-size:24px;
     }
@@ -424,7 +406,7 @@
         font-size:14px;
     }
 
-    .industries-hover-img{
+    .industries-text img{
         width:100px;
         height:65px;
         margin-left:320px;
@@ -436,18 +418,17 @@
 @media (max-width:768px){
 
     .industries-container{
-        padding:100px 20px 40px;
+        padding:118px 20px 40px;
     }
 
     .industries-title-fixed{
         font-size:30px;
-        line-height:38px;
-        top:80px;
+        line-height:90px;
     }
 
     .industries-carousel-wrapper{
-        height:80vh;
-        min-height:80vh;
+        height:100vh;
+        min-height:100vh;
         overflow:hidden;
     }
 
@@ -457,8 +438,8 @@
     }
 
     .industries-slide{
-        height:80vh;
-        min-height:80vh;
+        height:100vh;
+        min-height:100vh;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -466,9 +447,10 @@
     }
     .industries-content{
         flex-direction:column;
-        gap:20px;
+        gap:0px;
         text-align:left;
         display: flex;
+        margin-top: 53px;
     }
     .industries-subtitle{
         width: 340px;
@@ -476,6 +458,7 @@
         margin-left:12px;
         transform:translateX(-10px);
         transition:all 0.3s ease;
+        margin-bottom: 7px;
     }
     .industries-subtitle:focus + img{
         opacity:1;
@@ -489,7 +472,7 @@
         font-size:14px;
     }
     .industries-list{
-        gap:12px;
+        gap: 2px;
     }
     .industries-list li{
         font-size:14px;
@@ -504,7 +487,7 @@
     }
     .industries-image-wrap img{
         width:200px;
-        height:200px;
+        height:128px;
         margin-top: 50px;
     }
     .industries-slide-num{
@@ -517,18 +500,49 @@
         animation: accentFloatMobile 4s ease-in-out infinite;
 
     }
-}
+     .industries-text {
+        max-width: 100%;
+    }
+    .industries-text img{
+        width:70px;
+        height:45px;
+        margin-left:250px;
+        margin-top:-55px;
+    }
+    .industries-list li::after{
+        content:"";
+        position:absolute;
+        left:290px;
+        top:50%;
+        transform:translateY(-50%) rotate(0deg);
+        width:18px;
+        height:18px;
+        background:url("/public/assets/images/Arrow_indus.png") no-repeat center;
+        background-size:contain;
+        opacity:0;
+    }
+    .industries-list li:hover::after{
+        width: 40px;
+        height: 40px;
+        opacity:1;
+        filter: brightness(0) saturate(100%) invert(67%) sepia(48%) saturate(3179%) hue-rotate(211deg) brightness(101%) contrast(101%);
+    }
+    .industries-list li:hover{
+        transform:translateX(3px);
+    }
+} 
+
+
 
 @media (max-width:480px){
 
     .industries-container{
-        padding:80px 16px 40px;
+        padding:103px 16px 40px;
     }
 
     .industries-title-fixed{
         font-size:26px;
-        line-height:32px;
-        top:70px;
+        line-height:93px;
     }
 
     .industries-carousel-wrapper{
@@ -543,6 +557,7 @@
     .industries-content{
         flex-direction:column;
         gap:18px;
+        margin-top: 53px;
     }
 
     .industries-subtitle{
@@ -564,13 +579,14 @@
     }
 
     .industries-image-wrap{
+        order: 2;
         width:100%;
         justify-content:center;
     }
 
     .industries-image-wrap img{
         width:170px;
-        height:170px;
+        height:117px;
         margin-top:40px;
     }
 
