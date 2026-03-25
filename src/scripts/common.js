@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPrivacyContent();
     loadEngageContent();
     loadFooterContent();
-   const TOTAL_MS = 5500; // 13s approx
+   const TOTAL_MS = 4500; // 13s approx
 
    setTimeout(() => {
      document.body.classList.add("is-ready");
