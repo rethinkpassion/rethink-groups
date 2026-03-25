@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadIndustriesContent();
     loadLifecycleContent();
     loadQuestionsContent();
+    loadPrivacyContent();
     loadEngageContent();
     loadFooterContent();
    const TOTAL_MS = 5500; // 13s approx
@@ -324,6 +325,25 @@ function hideLoader() {
     setTimeout(() => {
         loader.style.display = "none";
     }, 500);
+}
+
+async function loadPrivacyContent() {
+    const privacyPlaceholder = document.getElementById('privacy-placeholder');
+    if (!privacyPlaceholder) return;
+
+    try {
+        const response = await fetch('src/components/privacy/privacy.html');
+        if (response.ok) {
+            const html = await response.text();
+            privacyPlaceholder.innerHTML = html;
+
+            if (window.initPrivacyComponents) {
+                window.initPrivacyComponents();
+            }
+        }
+    } catch (error) {
+        console.error('Error loading privacy content:', error);
+    }
 }
 
 

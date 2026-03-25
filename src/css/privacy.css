@@ -1,0 +1,335 @@
+:root {
+  --privacy-card-border-grad: linear-gradient(135deg,#98C0D170, rgba(38, 4, 19, 0.45));
+  --privacy-surface-bg: rgba(0, 0, 0, 0.62);
+  --privacy-card-border: rgba(168, 85, 247, 0.28);
+  --privacy-text-muted: rgba(255, 255, 255, 0.72);
+  --privacy-accent: #a855f7;
+  --privacy-accent-2: #db2777;
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+/* body {
+    background: #000;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+} */
+ @font-face {
+   font-family: "Space Grotesk";
+   src: url("../../public/assets/fonts/SpaceGrotesk/SpaceGrotesk-Light.ttf") format("truetype");
+   font-weight: 300;
+   font-style: normal;
+   font-display: swap;
+ }
+@font-face {
+  font-family: "Neue Machina";
+  src: url("../../public/assets/fonts/neue-machina-free-for-personal-use/NeueMachina-Light.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tiempos Headline Light Italic";
+  src: url("../../public/assets/fonts/tiemposHeadline-semi/TiemposHeadline-LightItalic.otf") format("opentype");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tiempos Headline";
+  src: url("../../public/assets/fonts/tiemposHeadline-semi/TiemposHeadline-Medium.otf") format("opentype");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Neue Haas Grotesk Text Pro";
+  src: url("../../public/assets/fonts/Neue-Haas-Grotesk-Font/NHaasGroteskTXPro-55Rg.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../../public/assets/fonts/SpaceGrotesk/SpaceGrotesk-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+.privacy-policy-section {
+  position: relative;
+  overflow: hidden;
+  padding: 120px 7% 90px 7%;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 500px at 15% 0%, rgba(124, 58, 237, 0.20) 0%, rgba(0, 0, 0, 0) 60%),
+    radial-gradient(900px 500px at 85% 10%, rgba(219, 39, 119, 0.16) 0%, rgba(0, 0, 0, 0) 62%),
+    #000;
+}
+
+.privacy-policy-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.privacy-policy-title {
+  text-align: center;
+  /* font-family: "Tiempos Headline", serif; */
+  font-style: italic;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1.1;
+  margin-bottom: 40px;
+  background: linear-gradient(10deg, #40C9FF 0%, #c21cff 70%, #E81CFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: Tiempos Headline Light Italic;
+  font-weight: 500;
+  /* font-style: Medium Italic; */
+  font-size: 56px;
+  line-height: 55px;
+
+}
+
+/* Shared card styling so both containers match */
+.privacy-card {
+  border-radius: 16px;
+  background: var(--privacy-card-border-grad);
+  padding: 1px;
+  /* creates the border */
+}
+
+.privacy-card-surface {
+  border-radius: 15px;
+  background: var(--privacy-surface-bg);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.privacy-policy-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 42px;
+}
+
+.privacy-sidebar {
+  width: 290px;
+  flex: 0 0 290px;
+}
+
+.privacy-sidebar .privacy-card-surface {
+  padding: 18px 16px;
+}
+
+.privacy-sidebar-heading {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  line-height: 25.18px;
+  letter-spacing: 0;
+  margin-bottom: 14px;
+  font-family: Tiempos Headline;
+  font-weight: 500;
+}
+
+.privacy-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.privacy-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.78);
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+  font-size: 13px;
+  font-family: Tiempos Headline;
+  font-weight: 400;
+  font-style: Regular;
+  /* font-size: 14.69px; */
+  line-height: 20.99px;
+  letter-spacing: 0px;
+}
+
+
+
+.privacy-nav-link:hover,
+.privacy-nav-link.active {
+  background: #AD46FF;
+  border-color: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.privacy-nav-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.10);
+  flex-shrink: 0;
+}
+
+.privacy-nav-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+.privacy-nav-link:hover .privacy-nav-icon,
+.privacy-nav-link.active .privacy-nav-icon {
+  opacity: 1;
+  /* SVGs in /public/assets/icons use gradients; this filter turns them into a near-white icon. */
+  filter: grayscale(1) brightness(4) drop-shadow(0 0 10px rgba(255, 255, 255, 0.12));
+}
+
+.privacy-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.privacy-content .privacy-card-surface {
+  padding: 18px 18px;
+}
+
+.privacy-content-scroll {
+  max-height: 70vh;
+  overflow: auto;
+  padding-right: 8px;
+}
+
+.privacy-content-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.privacy-content-scroll::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.35);
+  border-radius: 999px;
+}
+
+.privacy-content-block {
+  scroll-margin-top: 120px;
+  padding: 18px;
+  border-radius: 14px;
+  /* border: 1px solid var(--privacy-card-border); */
+  /* background: rgba(0, 0, 0, 0.35); */
+  margin-bottom: 14px;
+}
+
+.privacy-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.privacy-section-heading h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: Tiempos Headline;
+  font-style: Semibold;
+  font-size: 21.2px;
+  letter-spacing: 2px;
+  vertical-align: middle;
+}
+
+.privacy-section-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#737577 30%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 22px rgba(168, 85, 247, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.privacy-section-icon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.privacy-paragraph {
+  color: var(--privacy-text-muted);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  font-family: Space Grotesk;
+}
+
+.privacy-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--privacy-text-muted);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  font-family: Space Grotesk;
+}
+
+.privacy-list li {
+  margin-bottom: 6px;
+}
+
+.privacy-link {
+  color: #e9d5ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+  .privacy-policy-title {
+    font-size: 44px;
+  }
+
+  .privacy-policy-grid {
+    gap: 26px;
+  }
+
+  .privacy-sidebar {
+    width: 250px;
+    flex-basis: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .privacy-policy-section {
+    padding: 100px 18px 70px 18px;
+  }
+
+  .privacy-policy-grid {
+    flex-direction: column;
+  }
+
+  .privacy-sidebar {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .privacy-content-scroll {
+    max-height: 62vh;
+  }
+
+  .privacy-policy-title {
+    font-size: 34px;
+    margin-bottom: 22px;
+  }
+}
