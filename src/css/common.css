@@ -76,6 +76,16 @@ html {
   }
 }
 
+/* Privacy Policy should not be visible until user explicitly opens it
+   (footer "Privacy Policy" link switches the app into privacy-only mode). */
+#privacy-placeholder {
+  display: none;
+}
+
+body.is-privacy-only-view #privacy-placeholder {
+  display: block;
+}
+
 
 body {
   /* background-color: var(--primary-bg); */
