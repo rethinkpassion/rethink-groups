@@ -383,14 +383,16 @@
     color: var(--privacy-text-muted);
     font-family: "Space Grotesk", sans-serif;
     line-height: 1.8;
-    margin-bottom: 12px;
     font-family: Space Grotesk;
     gap:10px;
+    margin-bottom: 6px;
+
   }
   .privacy-content-block {
     scroll-margin-top: 120px;
     padding: 17px;
     border-radius: 14px;
+    margin-bottom: -15px;
   }
   .privacy-list {
     margin: 0;
@@ -449,6 +451,7 @@
   .privacy-content-block {
     padding: 14px;
     border-radius: 12px;
+    margin-bottom: -15px;
   }
 
 }
