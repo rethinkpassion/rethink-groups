@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadIndustriesContent();
     loadLifecycleContent();
     loadQuestionsContent();
+    loadPrivacyContent();
     loadEngageContent();
     loadFooterContent();
    const TOTAL_MS = 4500; // 13s approx
@@ -20,6 +21,62 @@ document.addEventListener('DOMContentLoaded', () => {
    loadStrategyContent();
    loadEnterpriseContent();
 });
+
+const PRIVACY_ONLY_VIEW_PLACEHOLDERS = [
+    // main sections
+    'home-placeholder',
+    'about-placeholder',
+    'sectors-placeholder',
+    'investment-placeholder',
+    'goal-placeholder',
+    'philosophy-placeholder',
+    'strategic-placeholder',
+    'industries-placeholder',
+    'enterprise-placeholder',
+    'lifecycle-placeholder',
+    'questions-placeholder',
+    // non-main content
+    'about-engageholder',
+    // footer
+    'footer-placeholder',
+];
+
+function showNormalView() {
+    document.body.classList.remove('is-privacy-only-view');
+
+    // Restore all placeholders to their default rendering.
+    const idsToRestore = [...PRIVACY_ONLY_VIEW_PLACEHOLDERS, 'privacy-placeholder'];
+    idsToRestore.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.style.display = '';
+    });
+
+    // Avoid leaving privacy hash active when user returns to normal screen.
+    if (window.location.hash && window.location.hash.startsWith('#privacy-')) {
+        window.location.hash = '';
+    }
+}
+
+function showPrivacyOnlyView() {
+    document.body.classList.add('is-privacy-only-view');
+
+    // Hide everything except navbar + privacy-placeholder.
+    PRIVACY_ONLY_VIEW_PLACEHOLDERS.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.style.display = 'none';
+    });
+
+    const privacyPlaceholder = document.getElementById('privacy-placeholder');
+    if (privacyPlaceholder) {
+        privacyPlaceholder.style.display = 'block';
+        // Ensure the first section is highlighted in the sidebar.
+        if (!window.location.hash || !window.location.hash.startsWith('#privacy-')) {
+            window.location.hash = '#privacy-intro';
+        }
+    }
+}
 
 async function loadNavbar() {
     const navbarPlaceholder = document.getElementById('navbar-placeholder');
@@ -110,6 +167,10 @@ function initNavbarSmoothScroll() {
             const section = document.getElementById(id);
             if (section) {
                 e.preventDefault();
+                // Leaving privacy-only mode should restore the full page.
+                if (document.body.classList.contains('is-privacy-only-view')) {
+                    showNormalView();
+                }
                 section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 setActiveLinkBySection(id);
                 if (mobileOverlay && mobileOverlay.classList.contains('active') && typeof window.closeMobileMenu === 'function') {
@@ -326,6 +387,25 @@ function hideLoader() {
     }, 500);
 }
 
+async function loadPrivacyContent() {
+    const privacyPlaceholder = document.getElementById('privacy-placeholder');
+    if (!privacyPlaceholder) return;
+
+    try {
+        const response = await fetch('src/components/privacy/privacy.html');
+        if (response.ok) {
+            const html = await response.text();
+            privacyPlaceholder.innerHTML = html;
+
+            if (window.initPrivacyComponents) {
+                window.initPrivacyComponents();
+            }
+        }
+    } catch (error) {
+        console.error('Error loading privacy content:', error);
+    }
+}
+
 
 async function loadSectorsContent() {
     const sectorsPlaceholder = document.getElementById('sectors-placeholder');
@@ -438,6 +518,19 @@ async function loadFooterContent() {
             // Initialize about-specific components
             if (window.initAboutComponents) {
                 window.initAboutComponents();
+            }
+
+            // Footer "Privacy Policy" should switch the app into privacy-only view.
+            const privacyLink = aboutPlaceholder.querySelector('#footer-privacy-policy');
+            if (privacyLink) {
+                privacyLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPrivacyOnlyView();
+                    const privacyPlaceholder = document.getElementById('privacy-placeholder');
+                    if (privacyPlaceholder) {
+                        privacyPlaceholder.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
             }
         }
     } catch (error) {
